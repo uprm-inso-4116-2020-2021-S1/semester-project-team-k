@@ -1,10 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
+import CustomButton from './CustomButton';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function App() {
+function LogInScreen({ navigation }) {
   return (
     <View style={styles.container}>
+      
+      <View style={styles.header}>
+        <View  style = {styles.homeButton}>
+          <Button
+          title="Home"
+          onPress={() => navigation.navigate('Home')}
+          />
+        </View>
+      </View>
+
       <View style={styles.logInContainerStack}>
         <View style={styles.logInContainer}>
           <TextInput placeholder = 'Username' style = {styles.logInText} />
@@ -22,11 +34,33 @@ export default function App() {
           <View style={styles.rect2}></View>
         </View>
       </View>
+
     </View>
   );
-};
+}
 
+function HomeScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen</Text>
+    </View>
+  );
+}
 
+const Stack = createStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Log In">
+        <Stack.Screen name="Log In" component={LogInScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
@@ -63,11 +97,21 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   logoText: {
-    fontFamily: "roboto-700",
     color: "#121212",
     textAlign: "center",
     fontSize: 13,
     marginTop: 35,
     alignSelf: "center"
+  },
+  homeButton: {
+    
+  },
+  header: {
+    // padding: 40,
+    // width: '100%',
+    // height: '13%',
+    // backgroundColor: "#E6E6E6",
+    // flexDirection: 'row',
+    justifyContent: 'flex-end',
   }
 });
