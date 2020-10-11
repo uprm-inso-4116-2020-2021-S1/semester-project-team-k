@@ -3,12 +3,14 @@ import { StyleSheet, Text, TextInput, View, Button, Image, ImageBackground, Icon
 import CustomButton from './CustomButton';
 import { NavigationContainer } from '@react-navigation/native';
 import { Assets, createStackNavigator } from '@react-navigation/stack';
+import { SearchBar } from 'react-native-elements';
  
 
 function LogInScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      <ImageBackground source={require('./assets/fondo-01.png')} style={styles.img}>
+      {/* <View style={styles.header}>
         <View  style = {styles.homeButton}>
           <Button
             // style={{width: 121/2, height: 116/2}}
@@ -18,9 +20,10 @@ function LogInScreen({ navigation }) {
             onPress={() => navigation.navigate('Home')}
           />
         </View>
-      </View>
+      </View> */}
 
       <View style={styles.logInContainerStack}>
+        
         <View style={styles.logoContainer}>
           {/* <TextInput placeholder = 'Username' style = {styles.logInText} />
           <TextInput placeholder = 'Password' style = {styles.logInText}/>
@@ -28,8 +31,9 @@ function LogInScreen({ navigation }) {
         </View>
         <View style={styles.bannerContainerStack}>
           <View style={styles.bannerContainer}>
+            
             <View style={styles.logoImage}>
-
+            
             <Image
               style={{width: 1378/1.5, height: 572/1.5}}
               source={require('./assets/Logo-01.png')}>
@@ -44,7 +48,7 @@ function LogInScreen({ navigation }) {
           <View style={styles.rect2}></View>
         </View>
       </View>
-
+      </ImageBackground>
     </View>
   );
 }
@@ -72,12 +76,48 @@ const Stack = createStackNavigator();
 
 function LogoTitle() {
   return (
-    <Image
-      style={{ width: 50, height: 50 }}
+    <View style={styles.nav}>
+      <Image
+      style={{ width: 50, height: 50, marginTop: '8px'}}
       source={require('./assets/home-icon-01.png')}
-    />
+      />
+      <SearchBar
+        placeholder="Type Here..."
+        lightTheme
+        // onChangeText={this.updateSearch}
+        // value={search}
+      />
+      <View style={styles.header}>
+        <View  style = {styles.homeButton}>
+          <Button
+            // style={{width: 121/2, height: 116/2}}
+            // source="./assets/home-icon-01.png"
+
+            title="Log In"
+            onPress={() => navigation.navigate('Home')}
+          />
+        </View>
+      </View> 
+    </View>
   );
 }
+
+// function navbar(){
+//   return (
+//     <View></View>
+//     <View style={styles.header}>
+//         <View  style = {styles.homeButton}>
+//           <Button
+//             // style={{width: 121/2, height: 116/2}}
+//             // source="./assets/home-icon-01.png"
+
+//             title="Log In"
+//             onPress={() => navigation.navigate('Home')}
+//           />
+//         </View>
+//       </View> 
+//   );
+// }
 
 function App() {
   return (
@@ -157,13 +197,22 @@ const styles = StyleSheet.create({
     // left: 145,
     // top: 37 
   },
+  nav:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   header: {
-    padding: 40,
-    width: '100%',
-    height: '13%',
+    // padding: 40,
+    // width: '100%',
+    height: '10%',
     backgroundColor: "#E6E6E6",
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    marginTop: '12px',
+  },
+  img:{
+    flex: 1,
+    resizeMode: "cover",
   },
 });
 
