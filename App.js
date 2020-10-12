@@ -10,8 +10,8 @@ function LogInScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <ImageBackground source={require('./assets/fondo-01.png')} style={styles.img}>
-      {/* <View style={styles.header}>
-        <View  style = {styles.homeButton}>
+       {/* <View style={styles.header}>
+        <View  style = {styles.homeButton}> */}
           <Button
             // style={{width: 121/2, height: 116/2}}
             // source="./assets/home-icon-01.png"
@@ -19,15 +19,12 @@ function LogInScreen({ navigation }) {
             title="Log In"
             onPress={() => navigation.navigate('Home')}
           />
-        </View>
-      </View> */}
+        {/* </View>
+      </View>  */}
 
       <View style={styles.logInContainerStack}>
         
         <View style={styles.logoContainer}>
-          {/* <TextInput placeholder = 'Username' style = {styles.logInText} />
-          <TextInput placeholder = 'Password' style = {styles.logInText}/>
-          <Button title = 'Log In'/> */}
         </View>
         <View style={styles.bannerContainerStack}>
           <View style={styles.bannerContainer}>
@@ -55,7 +52,8 @@ function LogInScreen({ navigation }) {
 
 function HomeScreen() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <ImageBackground source={require('./assets/fondo-01.png')} style={styles.imglog}>
       {/* <Text>Home Screen</Text> */}
 
       {/* <ImageBackground
@@ -67,14 +65,13 @@ function HomeScreen() {
           <TextInput placeholder = 'Username' style = {styles.logInText} />
           <TextInput placeholder = 'Password' style = {styles.logInText}/>
           <Button title = 'Log In' style = {styles.logInButton}/>
-        </View>
+      </View>
+      </ImageBackground>
     </View>
   );
 }
 
-const Stack = createStackNavigator();
-
-function LogoTitle() {
+function LogoTitle({ navigation }) {
   return (
     <View style={styles.nav}>
       <Image
@@ -84,40 +81,20 @@ function LogoTitle() {
       <SearchBar
         placeholder="Type Here..."
         lightTheme
-        // onChangeText={this.updateSearch}
-        // value={search}
       />
       <View style={styles.header}>
         <View  style = {styles.homeButton}>
-          <Button
-            // style={{width: 121/2, height: 116/2}}
-            // source="./assets/home-icon-01.png"
-
+          {/* <Button
             title="Log In"
             onPress={() => navigation.navigate('Home')}
-          />
+          /> */}
         </View>
       </View> 
     </View>
   );
 }
 
-// function navbar(){
-//   return (
-//     <View></View>
-//     <View style={styles.header}>
-//         <View  style = {styles.homeButton}>
-//           <Button
-//             // style={{width: 121/2, height: 116/2}}
-//             // source="./assets/home-icon-01.png"
-
-//             title="Log In"
-//             onPress={() => navigation.navigate('Home')}
-//           />
-//         </View>
-//       </View> 
-//   );
-// }
+const Stack = createStackNavigator();
 
 function App() {
   return (
@@ -140,8 +117,9 @@ const styles = StyleSheet.create({
   logInContainer: {
     width: '40%',
     height: '40%',
-    backgroundColor: "#E6E6E6",
-    marginTop: 20,
+    // backgroundColor: "#E6E6E6",
+    backgroundColor: "white",
+    marginTop: 100,
     alignSelf: 'center',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -213,6 +191,10 @@ const styles = StyleSheet.create({
   img:{
     flex: 1,
     resizeMode: "cover",
+  },
+  imglog:{
+    width: '100%',
+    height: '100%'
   },
 });
 
