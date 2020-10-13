@@ -4,16 +4,6 @@ import CustomButton from './CustomButton';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-// state = {
-//   data: []
-// }
-
-// fetchData = async()=>{
-//   const response = await fetch('http://localhost:9998/users');
-//   const users = await response.json();
-//   this.setState({data:users});
-// }
-
 function LogInScreen({ navigation }) {
   return (
     <View style={styles.container}>
@@ -29,11 +19,10 @@ function LogInScreen({ navigation }) {
 
       <View style={styles.logInContainerStack}>
         <View style={styles.logInContainer}>
-          <TextInput placeholder = 'Username' style = {styles.logInText} />
-          <TextInput placeholder = 'Password' style = {styles.logInText}/>
+          <TextInput _username = 'Username' style = {styles.logInText} />
+          <TextInput _password = 'Password' style = {styles.logInText}/>
           <Button 
             title = 'Log In'
-            //onPress={() => navigation.navigate('Home')}
           />
         </View>
         <View style={styles.bannerContainerStack}>
