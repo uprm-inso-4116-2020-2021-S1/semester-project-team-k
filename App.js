@@ -1,13 +1,21 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
 import CustomButton from './CustomButton';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 function LogInScreen({ navigation }) {
+  // Inputs of the user
+  const [_email, setEmail] = useState('param');
+  const [_password, setPassword] = useState('');
+
+  // Parameter to pass on to another view, result of login from user
+  const [user, setUser] = useState({user:"userTest"});
+
+  
   return (
     <View style={styles.container}>
-      
+    
       <View style={styles.header}>
         <View  style = {styles.homeButton}>
           <Button
@@ -19,10 +27,29 @@ function LogInScreen({ navigation }) {
 
       <View style={styles.logInContainerStack}>
         <View style={styles.logInContainer}>
-          <TextInput _username = 'Username' style = {styles.logInText} />
-          <TextInput _password = 'Password' style = {styles.logInText}/>
+          <TextInput 
+            value = {_email} 
+            style = {styles.logInText}
+            onChangeText={text => setEmail(text)}
+            placeholder="Email"
+          />
+          <TextInput 
+            value = {_password}
+            style = {styles.logInText}
+            onChangeText={text => setPassword(text)}
+            placeholder="Password"
+          />
           <Button 
             title = 'Log In'
+            onPress={
+              () => {
+                fetch(`http://localhost:9998/users/login?email=${_email}&password=${_password}`)
+                  .then((response) => response.json())
+                  .then((data) => setUser({user:JSON.stringify(data)}))
+                  .catch((err) => setUser({user:JSON.stringify(err)}));
+                navigation.navigate('SuccessfulLogin', user);
+              }
+            }
           />
         </View>
         <View style={styles.bannerContainerStack}>
@@ -49,6 +76,17 @@ function HomeScreen() {
   );
 }
 
+function SuccessfulLogin({route}) {
+  const [user, setUser] = useState(route.params.user);
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>
+        user:{user}
+      </Text>
+    </View>
+  );
+}
+
 const Stack = createStackNavigator();
 
 function App() {
@@ -57,6 +95,7 @@ function App() {
       <Stack.Navigator initialRouteName="Log In">
         <Stack.Screen name="Log In" component={LogInScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="SuccessfulLogin" component={SuccessfulLogin} />
       </Stack.Navigator>
     </NavigationContainer>
   );

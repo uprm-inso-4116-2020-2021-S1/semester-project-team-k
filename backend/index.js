@@ -2,7 +2,8 @@
 //Declare components
 const express = require('express'),
   app = express(),
-  bodyParser = require('body-parser');
+  bodyParser = require('body-parser'),
+  cors = require("cors");
 
 //Import server config
 let server = require('./server');
@@ -17,6 +18,7 @@ conn.connect(function(error){
 //Declare application type
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(cors());
 
 //Declare routers
 const userRouter = require('./routes/user');
@@ -32,5 +34,5 @@ var serverListen = {
 //Starting the server
 app.listen( serverListen.port , () => console.log(`Server started, listening port: ${serverListen.port}`));
 
-exports.app = app;
+module.exports = app;
 
