@@ -1,28 +1,32 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View, Button, Image, ImageBackground, IconButton } from 'react-native';
 
-function HomeScreen({ navigation }) {
+function IntroScreen({ navigation }) {
   return (
-    <View style={homeStyles.container}>
-      <ImageBackground source={require('./assets/fondo-01.png')} style={homeStyles.img}>
+    <View style={introStyles.container}>
+      <ImageBackground source={require('./assets/fondo-01.png')} style={introStyles.img}>
           <Button
             title="Log In"
             onPress={() => navigation.navigate('Log In')}
           />
+          <Button
+            title="Go Browse"
+            onPress={() => navigation.navigate('Browse')}
+          />
 
-      <View style={homeStyles.logInContainerStack}>
+      <View style={introStyles.logInContainerStack}>
         
-        <View style={homeStyles.logoContainer}>
+        <View style={introStyles.logoContainer}>
       </View>
-        <View style={homeStyles.bannerContainerStack}>
-          <View style={homeStyles.bannerContainer}>
-            <View style={homeStyles.logoImage}>
+        <View style={introStyles.bannerContainerStack}>
+          <View style={introStyles.bannerContainer}>
+            <View style={introStyles.logoImage}>
             <Image
               style={{width: 1378/1.5, height: 572/1.5}}
               source={require('./assets/Logo-01.png')}>
             </Image>
             </View>
-            <Text style={homeStyles.logoText}>
+            <Text style={introStyles.logoText}>
               Books · School Supplies · School Merch · Clothing
             </Text>
           </View>
@@ -35,9 +39,9 @@ function HomeScreen({ navigation }) {
   );
 }
   
-  export default HomeScreen;
+  export default IntroScreen;
 
-  const homeStyles = StyleSheet.create({
+  const introStyles = StyleSheet.create({
     container: {
       flex: 1
     },

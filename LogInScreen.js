@@ -3,6 +3,18 @@ import { StyleSheet, Text, TextInput, View, Button, Image, ImageBackground, Icon
 import { SearchBar } from 'react-native-elements';
 
 function LogInScreen({ navigation }) {
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: () => (
+        <Image
+        style={{ width: 50, height: 50 }}
+        source={require('./assets/home-icon-01.png')}
+        />
+      ),
+    });
+  }, [navigation]);
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <ImageBackground source={require('./assets/fondo-01.png')} style={loginStyles.imglog}>
@@ -17,7 +29,7 @@ function LogInScreen({ navigation }) {
           <TextInput placeholder = 'Username' style = {loginStyles.logInText} />
           <TextInput placeholder = 'Password' style = {loginStyles.logInText}/>
           <Button title = 'Log In' style = {loginStyles.logInButton}
-          onPress = {() => navigation.Navigate('Home') }/>
+          onPress = {() => navigation.Navigate('Intro') }/>
       </View>
       </ImageBackground>
     </View>
