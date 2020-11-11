@@ -17,7 +17,7 @@ function BrowseScreen({ navigation }) {
           <TextInput
             style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
           />
-          <Button onPress={() => alert('Go To Search Screen')} title="Search" />
+          <Button onPress={() => navigation.navigate('Search')} title="Search" />
           <Button onPress={() => alert('Go To Cart Screen')} title="Cart" />
           <Button onPress={() => alert('Go To Profile Screen')} title="Profile" />
         </View> 
