@@ -7,7 +7,6 @@ const customButton = props => {
             <Text style = {styles.text}>{props.text}</Text>
         </View>
     )
-
     return <TouchableOpacity onPress = {props.onPress}>{content}</TouchableOpacity>
 }
 
