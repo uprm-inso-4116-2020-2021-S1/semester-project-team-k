@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, View, Button, Image, ImageBackground, IconButton } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button, Image, ImageBackground, IconButton, TouchableOpacity } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 
 function LogInScreen({ navigation }) {
@@ -7,10 +7,11 @@ function LogInScreen({ navigation }) {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
-        <Image
-        style={{ width: 50, height: 50 }}
-        source={require('./assets/home-icon-01.png')}
-        />
+        <TouchableOpacity onPress={() => navigation.navigate('Intro')}>
+          <Image
+          style={{ width: 50, height: 50 }}
+          source={require('./assets/home-icon-01.png')} />
+        </TouchableOpacity>
       ),
     });
   }, [navigation]);
@@ -18,43 +19,13 @@ function LogInScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <ImageBackground source={require('./assets/fondo-01.png')} style={loginStyles.imglog}>
-      {/* <Text>Home Screen</Text> */}
-
-      {/* <ImageBackground
-        style={{width: 1378/1.5, height: 572/1.5}}
-        source={require('./assets/Logo-01.png')}>
-      </ImageBackground> */}
-
       <View style={loginStyles.logInContainer}>
           <TextInput placeholder = 'Username' style = {loginStyles.logInText} />
           <TextInput placeholder = 'Password' style = {loginStyles.logInText}/>
-          <Button title = 'Log In' style = {loginStyles.logInButton}
-          onPress = {() => navigation.Navigate('Intro') }/>
+          <Button title = 'Log In' color = 'gray' style = {loginStyles.logInButton} />
+          {/* onPress = {() => navigation.Navigate('Intro') }/> */}
       </View>
       </ImageBackground>
-    </View>
-  );
-}
-
-function LogoTitle({ navigation }) {
-  return (
-    <View style={loginStyles.nav}>
-      <Image
-      style={{ width: 50, height: 50, marginTop: '8px'}}
-      source={require('./assets/home-icon-01.png')}
-      />
-      <SearchBar
-        placeholder="Type Here..."
-        lightTheme
-      />
-      <View style={loginStyles.header}>
-        <View  style = {loginStyles.homeButton}>
-          {/* <Button
-            title="Log In"
-            onPress={() => navigation.navigate('Home')}
-          /> */}
-        </View>
-      </View> 
     </View>
   );
 }
@@ -110,24 +81,3 @@ const loginStyles = StyleSheet.create({
     height: '100%'
   },
 });
-
-
-/////////////// Old Log In //////////////////////
-// function LogInScreen() {
-//   return (
-//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//       {/* <Text>Home Screen</Text> */}
-
-//       {/* <ImageBackground
-//         style={{width: 1378/1.5, height: 572/1.5}}
-//         source={require('./assets/Logo-01.png')}>
-//       </ImageBackground> */}
-
-//       <View style={styles.logInContainer}>
-//           <TextInput placeholder = 'Username' style = {styles.logInText} />
-//           <TextInput placeholder = 'Password' style = {styles.logInText}/>
-//           <Button title = 'Log In'/>
-//         </View>
-//     </View>
-//   );
-// }

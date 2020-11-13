@@ -1,26 +1,39 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, View, Button, Image, ImageBackground, IconButton } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button, Image, ImageBackground, IconButton, TouchableOpacity } from 'react-native';
 
 function BrowseScreen({ navigation }) {
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
-        <Image
-        style={{ width: 50, height: 50 }}
-        source={require('./assets/home-icon-01.png')}
-        />
+        <TouchableOpacity onPress={() => navigation.navigate('Intro')}>
+          <Image
+          style={{ width: 50, height: 50 }}
+          source={require('./assets/home-icon-01.png')} />
+        </TouchableOpacity>
       ),
       headerRight: () => 
       (
         <View style={{marginHorizontal: 50, flexDirection: "row"}}>
-          <TextInput
-            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-          />
-          <Button onPress={() => navigation.navigate('Search')} title="Search" />
-          <Button onPress={() => alert('Go To Cart Screen')} title="Cart" />
-          <Button onPress={() => alert('Go To Profile Screen')} title="Profile" />
-        </View> 
+          <TextInput placeholder = 'Search' style={{ height: 40, borderColor: 'gray', borderWidth: 2 }} /> 
+            <TouchableOpacity onPress={() => navigation.navigate('Search')}>
+              <Image
+              style={{ width: 50, height: 50 }}
+              source={require('./assets/search-icon-01.png')} /> 
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => alert('Go To Cart Screen')}>
+              <Image
+              style={{ width: 50, height: 50 }}
+              source={require('./assets/cart-01.png')} /> 
+            </TouchableOpacity>
+            
+            <TouchableOpacity onPress={() => alert('Go To Profile Screen')}>
+              <Image
+              style={{ width: 50, height: 50 }}
+              source={require('./assets/user-icon-01.png')} /> 
+            </TouchableOpacity>
+        </View>
       ),
     });
   }, [navigation]);
@@ -32,7 +45,11 @@ function BrowseScreen({ navigation }) {
           <View style = {browseStyles.itemboxesContainer}>
             <View style = {browseStyles.itembox}>
               <View style = {browseStyles.item}>
-                Here goes the item pic. and OnClick event.
+                {/* <TouchableOpacity onPress={() => navigation.navigate('Search')} title="Search"> */}
+                  <Image resizeMode = 'center' style = {browseStyles.item} source = {require('./assets/book-01.png')}>
+                  </Image>
+                {/* </TouchableOpacity> */}
+                {/* Here goes the item pic. and OnClick event. */}
               </View>
               <Text style = {browseStyles.itemboxText}>
                 A Very Interesting Book Title
@@ -44,7 +61,8 @@ function BrowseScreen({ navigation }) {
             
             <View style = {browseStyles.itembox}>
               <View style = {browseStyles.item}>
-
+                  <Image resizeMode = 'center' style = {browseStyles.img} source = {require('./assets/book-01.png')}>
+                  </Image>
               </View>
               <Text style = {browseStyles.itemboxText}>
                 A Very Interesting Book Title
@@ -56,7 +74,8 @@ function BrowseScreen({ navigation }) {
 
             <View style = {browseStyles.itembox}>
               <View style = {browseStyles.item}>
-
+                  <Image resizeMode = 'center' style = {browseStyles.img} source = {require('./assets/book-01.png')}>
+                  </Image>
               </View>
               <Text style = {browseStyles.itemboxText}>
                 A Very Interesting Book Title
@@ -86,9 +105,9 @@ container: {
 itemboxesContainer: {
   position: 'absolute',
   top: "25%",
-  width: '75vw',
-  borderWidth: 4,
-  borderColor: 'red',
+  width: '60vw',
+  borderWidth: 0,
+  // borderColor: 'red',
   flexDirection: 'row',
   alignSelf: 'center', 
   justifyContent: 'space-between',
@@ -99,8 +118,8 @@ item: {
   backgroundColor: 'grey',
 },
 itembox: {
-  borderWidth: 8,
-  borderColor: 'green',
+  borderWidth: 2,
+  // borderColor: 'green',
   width: "15vw",
   height: "30vh", 
 },
