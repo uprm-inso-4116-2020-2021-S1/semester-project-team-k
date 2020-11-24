@@ -41,7 +41,7 @@ export default class Login extends Component{
   }
 
   login=()=>{
-    fetch('http://HEREGOESCLIENTIP/u', {
+    fetch('http://HEREGOESCLIENTIP/users', {
       method: 'POST',
         headers: {
           'Accept': 'application/json',
