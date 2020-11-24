@@ -21,9 +21,11 @@ app.use(cors());
 
 //Declare routers
 const userRouter = require('./routes/user');
+const bookRouter = require('./routes/book');
 
 //Use routers
 app.use('/users', userRouter);
+app.use('/book', bookRouter);
 
 //Listen
 var serverListen = {

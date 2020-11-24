@@ -1,101 +1,60 @@
-import React from 'react';
-import { StyleSheet, Text, TextInput, View, Button, Image, ImageBackground, IconButton, AsyncStorage } from 'react-native';
+import React, {useState, useRef} from 'react';
+import { StyleSheet, Text, TextInput, View, Button, Image, ImageBackground, IconButton, TouchableOpacity } from 'react-native';
 import { SearchBar } from 'react-native-elements';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
+function LogInScreen({ navigation }) {
+  const [_email, setEmail] = useState('');
+  const [_password, setPassword] = useState('');
+  // Parameter to pass on to another view, result of login from user
+  const [user, setUser] = useState({user:"userTest"});
 
-export default class Login extends Component{
-  render(){
-    React.useLayoutEffect(() => {
-      navigation.setOptions({
-        headerTitle: () => (
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: () => (
+        <TouchableOpacity onPress={() => navigation.navigate('Intro')}>
           <Image
           style={{ width: 50, height: 50 }}
-          source={require('./assets/home-icon-01.png')}
-          />
-        ),
-      });
-    }, [navigation]);
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <ImageBackground source={require('./assets/fondo-01.png')} style={loginStyles.imglog}>
-        {/* <Text>Home Screen</Text> */}
-  
-        {/* <ImageBackground
-          style={{width: 1378/1.5, height: 572/1.5}}
-          source={require('./assets/Logo-01.png')}>
-        </ImageBackground> */}
-  
-        <View style={loginStyles.logInContainer}>
-            <TextInput placeholder = 'email' style = {loginStyles.logInText} onChangeText={(email)=> this.setState({email})} value={this.state.email}/>
-            <TextInput placeholder = 'Password' style = {loginStyles.logInText} onChangeText={(password)=> this.setState({password})} value={this.state.password}/>
-            <Button title = 'Log In' style = {loginStyles.logInButton}
-            onPress = {() => navigation.Navigate('Intro') }/>
-        </View>
-        </ImageBackground>
-      </View>
-    );
-  }
-  constructor(props){
-    super(props);
-    this.state={email:'', password:''};
-  }
+          source={require('./assets/home-icon-01.png')} />
+        </TouchableOpacity>
+      ),
+    });
+  }, [navigation]);
 
-  login=()=>{
-    fetch('http://HEREGOESCLIENTIP/users', {
-      method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content Type': 'application/json',
-        },
-          body: JSON.stringify({
-            email: this.state.email,
-            password: this.state.password,
-          })
-    })
-    .then((response) => response.json())
-    .then((res) => {
-      if(res.success === true) {
-        var email = res.message;
-        AsyncStorage.setItem('email', email);
-        this.props.navigator.push({
-
-          //Where is going to be redirected
-          id: 'BrowseScreen'
-        });
-      } else{
-        alert(res.message);
-      }
-    }) 
-    .done();
-  }
-}
-// function LogInScreen({ navigation }) {
-// }
-
-function LogoTitle({ navigation }) {
   return (
-    <View style={loginStyles.nav}>
-      <Image
-      style={{ width: 50, height: 50, marginTop: '8px'}}
-      source={require('./assets/home-icon-01.png')}
-      />
-      <SearchBar
-        placeholder="Type Here..."
-        lightTheme
-      />
-      <View style={loginStyles.header}>
-        <View  style = {loginStyles.homeButton}>
-          {/* <Button
-            title="Log In"
-            onPress={() => navigation.navigate('Home')}
-          /> */}
-        </View>
-      </View> 
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <ImageBackground source={require('./assets/fondo-01.png')} style={loginStyles.imglog}>
+      <View style={loginStyles.logInContainer}>
+          <TextInput 
+            value = {_email} 
+            style = {loginStyles.logInText}
+            onChangeText={text => setEmail(text)}
+            placeholder="Email"
+          />
+          <TextInput 
+            value = {_password}
+            style = {loginStyles.logInText}
+            onChangeText={text => setPassword(text)}
+            secureTextEntry={true}
+            placeholder="Password"
+          />
+          <Button title = 'Log In' color = 'gray' style = {loginStyles.logInButton} onPress={
+              () => {
+                fetch(`http://localhost:9998/users/login?email=${_email}&password=${_password}`)
+                  .then((response) => response.json())
+                  .then((data) => setUser({user:JSON.stringify(data)}))
+                  .catch((err) => setUser({user:JSON.stringify(err)}));
+                navigation.navigate('Intro', user);
+              }
+            }/>
+      </View>
+      </ImageBackground>
     </View>
   );
 }
 
-// export default LogInScreen;
+export default LogInScreen;
 
 const loginStyles = StyleSheet.create({
   logInContainer: {
@@ -146,24 +105,3 @@ const loginStyles = StyleSheet.create({
     height: '100%'
   },
 });
-
-
-/////////////// Old Log In //////////////////////
-// function LogInScreen() {
-//   return (
-//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//       {/* <Text>Home Screen</Text> */}
-
-//       {/* <ImageBackground
-//         style={{width: 1378/1.5, height: 572/1.5}}
-//         source={require('./assets/Logo-01.png')}>
-//       </ImageBackground> */}
-
-//       <View style={styles.logInContainer}>
-//           <TextInput placeholder = 'Username' style = {styles.logInText} />
-//           <TextInput placeholder = 'Password' style = {styles.logInText}/>
-//           <Button title = 'Log In'/>
-//         </View>
-//     </View>
-//   );
-// }

@@ -1,29 +1,35 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, View, Button, Image, ImageBackground, IconButton } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button, Image, ImageBackground, IconButton, TouchableOpacity } from 'react-native';
 
 function SearchScreen({ navigation }) {
 
-//   React.useLayoutEffect(() => {
-//     navigation.setOptions({
-//       headerTitle: () => (
-//         <Image
-//         style={{ width: 50, height: 50 }}
-//         source={require('./assests/home-icon-01.png')}
-//         />
-//       ),
-//       headerRight: () => 
-//       (
-//         <View style={{marginHorizontal: 50, flexDirection: "row"}}>
-//           <TextInput
-//             style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-//           />
-//           <Button onPress={() => alert('Go To Search Screen')} title="Search" />
-//           <Button onPress={() => alert('Go To Cart Screen')} title="Cart" />
-//           <Button onPress={() => alert('Go To Profile Screen')} title="Profile" />
-//         </View> 
-//       ),
-//     });
-//   }, [navigation]);
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: () => (
+        <TouchableOpacity onPress={() => navigation.navigate('Intro')}>
+          <Image
+          style={{ width: 50, height: 50 }}
+          source={require('./assets/home-icon-01.png')} />
+        </TouchableOpacity>
+      ),
+      headerRight: () => 
+      (
+        <View style={{marginHorizontal: 50, flexDirection: "row"}}>
+            <TouchableOpacity onPress={() => alert('Go To Cart Screen')}>
+              <Image
+              style={{ width: 50, height: 50 }}
+              source={require('./assets/cart-01.png')} /> 
+            </TouchableOpacity>
+            
+            <TouchableOpacity onPress={() => alert('Go To Profile Screen')}>
+              <Image
+              style={{ width: 50, height: 50 }}
+              source={require('./assets/user-icon-01.png')} /> 
+            </TouchableOpacity>
+        </View>
+      ),
+    });
+  }, [navigation]);
 
   return (
     <View style={searchStyles.container}>
@@ -33,9 +39,12 @@ function SearchScreen({ navigation }) {
             <View style = {searchStyles.itembox}>
               <View style = {searchStyles.item}>
                 {/* Aqui va el book logo */}
-                <Image resizeMode = 'center' style = {searchStyles.itemImage} source = {require('./assets/favicon.png')}>
-                    
-                </Image>
+
+                <TouchableOpacity onPress={() => navigation.navigate('Browse')} title="Browse">
+                  <Image resizeMode = 'center' style = {searchStyles.itemImage} source = {require('./assets/book-01.png')}>
+                  </Image>
+                </TouchableOpacity>
+
                 <Text style = {searchStyles.itemText}>
                     125$
                 </Text>
@@ -54,9 +63,11 @@ function SearchScreen({ navigation }) {
             <View style = {searchStyles.itembox}>
               <View style = {searchStyles.item}>
                 {/* Aqui va el book logo */}
-                <Image resizeMode = 'center' style = {searchStyles.itemImage} source = {require('./assets/favicon.png')}>
-                    
-                </Image>
+                <TouchableOpacity onPress={() => navigation.navigate('Browse')} title="Browse">
+                  <Image resizeMode = 'center' style = {searchStyles.itemImage} source = {require('./assets/book-01.png')}>
+                  </Image>
+                </TouchableOpacity>
+
                 <Text style = {searchStyles.itemText}>
                     Price
                 </Text>
@@ -75,9 +86,11 @@ function SearchScreen({ navigation }) {
             <View style = {searchStyles.itembox}>
               <View style = {searchStyles.item}>
                 {/* Aqui va el book logo */}
-                <Image resizeMode = 'center' style = {searchStyles.itemImage} source = {require('./assets/favicon.png')}>
-                    
-                </Image>
+                <TouchableOpacity onPress={() => navigation.navigate('Browse')} title="Browse">
+                  <Image resizeMode = 'center' style = {searchStyles.itemImage} source = {require('./assets/book-01.png')}>
+                  </Image>
+                </TouchableOpacity>
+
                 <Text style = {searchStyles.itemText}>
                     Price
                 </Text>
@@ -96,31 +109,11 @@ function SearchScreen({ navigation }) {
             <View style = {searchStyles.itembox}>
               <View style = {searchStyles.item}>
                 {/* Aqui va el book logo */}
-                <Image resizeMode = 'center' style = {searchStyles.itemImage} source = {require('./assets/favicon.png')}>
-                    
-                </Image>
-                <Text style = {searchStyles.itemText}>
-                    Price
-                </Text>
-                <Text style = {searchStyles.itemText}>
-                    Author
-                </Text>
-                <Text style = {searchStyles.itemText}>
-                    Subject
-                </Text>
-                <Text style = {searchStyles.itemText}>
-                    Genre
-                </Text>
-              </View>
-            </View>
+                <TouchableOpacity onPress={() => navigation.navigate('Browse')} title="Browse">
+                  <Image resizeMode = 'center' style = {searchStyles.itemImage} source = {require('./assets/book-01.png')}>
+                  </Image>
+                </TouchableOpacity>
 
-
-            <View style = {searchStyles.itembox}>
-              <View style = {searchStyles.item}>
-                {/* Aqui va el book logo */}
-                <Image resizeMode = 'center' style = {searchStyles.itemImage} source = {require('./assets/favicon.png')}>
-                    
-                </Image>
                 <Text style = {searchStyles.itemText}>
                     Price
                 </Text>
@@ -140,9 +133,35 @@ function SearchScreen({ navigation }) {
             <View style = {searchStyles.itembox}>
               <View style = {searchStyles.item}>
                 {/* Aqui va el book logo */}
-                <Image resizeMode = 'center' style = {searchStyles.itemImage} source = {require('./assets/favicon.png')}>
-                    
-                </Image>
+                <TouchableOpacity onPress={() => navigation.navigate('Browse')} title="Browse">
+                  <Image resizeMode = 'center' style = {searchStyles.itemImage} source = {require('./assets/book-01.png')}>
+                  </Image>
+                </TouchableOpacity>
+
+                <Text style = {searchStyles.itemText}>
+                    Price
+                </Text>
+                <Text style = {searchStyles.itemText}>
+                    Author
+                </Text>
+                <Text style = {searchStyles.itemText}>
+                    Subject
+                </Text>
+                <Text style = {searchStyles.itemText}>
+                    Genre
+                </Text>
+              </View>
+            </View>
+
+
+            <View style = {searchStyles.itembox}>
+              <View style = {searchStyles.item}>
+                {/* Aqui va el book logo */}
+                <TouchableOpacity onPress={() => navigation.navigate('Browse')} title="Browse">
+                  <Image resizeMode = 'center' style = {searchStyles.itemImage} source = {require('./assets/book-01.png')}>
+                  </Image>
+                </TouchableOpacity>
+
                 <Text style = {searchStyles.itemText}>
                     Price
                 </Text>
@@ -161,9 +180,11 @@ function SearchScreen({ navigation }) {
             <View style = {searchStyles.itembox}>
               <View style = {searchStyles.item}>
                 {/* Aqui va el book logo */}
-                <Image resizeMode = 'center' style = {searchStyles.itemImage} source = {require('./assets/favicon.png')}>
-                    
-                </Image>
+                <TouchableOpacity onPress={() => navigation.navigate('Browse')} title="Browse">
+                  <Image resizeMode = 'center' style = {searchStyles.itemImage} source = {require('./assets/book-01.png')}>
+                  </Image>
+                </TouchableOpacity>
+
                 <Text style = {searchStyles.itemText}>
                     Price
                 </Text>
@@ -182,9 +203,11 @@ function SearchScreen({ navigation }) {
             <View style = {searchStyles.itembox}>
               <View style = {searchStyles.item}>
                 {/* Aqui va el book logo */}
-                <Image resizeMode = 'center' style = {searchStyles.itemImage} source = {require('./assets/favicon.png')}>
-                    
-                </Image>
+                <TouchableOpacity onPress={() => navigation.navigate('Browse')} title="Browse">
+                  <Image resizeMode = 'center' style = {searchStyles.itemImage} source = {require('./assets/book-01.png')}>
+                  </Image>
+                </TouchableOpacity>
+
                 <Text style = {searchStyles.itemText}>
                     Price
                 </Text>
@@ -203,9 +226,11 @@ function SearchScreen({ navigation }) {
             <View style = {searchStyles.itembox}>
               <View style = {searchStyles.item}>
                 {/* Aqui va el book logo */}
-                <Image resizeMode = 'center' style = {searchStyles.itemImage} source = {require('./assets/favicon.png')}>
-                    
-                </Image>
+                <TouchableOpacity onPress={() => navigation.navigate('Browse')} title="Browse">
+                  <Image resizeMode = 'center' style = {searchStyles.itemImage} source = {require('./assets/book-01.png')}>
+                  </Image>
+                </TouchableOpacity>
+
                 <Text style = {searchStyles.itemText}>
                     Price
                 </Text>
@@ -241,10 +266,10 @@ container: {
 },
 itemboxesContainer: {
     position: 'absolute',
-    top: "5%",
+    top: "7%",
     width: '80vw',
-    borderWidth: 4,
-    borderColor: 'red',
+    borderWidth: 0,
+    // borderColor: 'red',
     flexDirection: 'column',
     alignSelf: 'center',
     justifyContent: 'space-between',
@@ -259,13 +284,13 @@ item: {
 itemImage: {
     width: '8vh',
     height: '8vh',
-    borderColor: "red",
-    borderWidth: 2,
+    // borderColor: "red",
+    borderWidth: 0,
 },
 itembox: {
     // padding: 6,
     alignSelf: 'center',
-    borderWidth: 4,
+    borderWidth: 2,
     borderColor: 'green',
     width: "75vw",
     height: "8vh",
