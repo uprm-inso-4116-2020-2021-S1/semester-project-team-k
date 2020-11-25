@@ -1,44 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, Button, Image, ImageBackground, IconButton, TouchableOpacity, Picker } from 'react-native';
 
-
-// function BrowseScreenTop({ navigation }) {
-
-//   React.useLayoutEffect(() => {
-//     navigation.setOptions({
-//       headerTitle: () => (
-//         <TouchableOpacity onPress={() => navigation.navigate('Intro')}>
-//           <Image
-//           style={{ width: 50, height: 50 }}
-//           source={require('./assets/home-icon-01.png')} />
-//         </TouchableOpacity>
-//       ),
-//       headerRight: () => 
-//       (
-//         <View style={{marginHorizontal: 50, flexDirection: "row"}}>
-//           <TextInput placeholder = 'Search' style={{ height: 40, borderColor: 'gray', borderWidth: 2 }} /> 
-//             <TouchableOpacity onPress={() => navigation.navigate('Search')}>
-//               <Image
-//               style={{ width: 50, height: 50 }}
-//               source={require('./assets/search-icon-01.png')} /> 
-//             </TouchableOpacity>
-
             <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
               <Image
               style={{ width: 50, height: 50 }}
               source={require('./assets/cart-01.png')} /> 
             </TouchableOpacity>
 
-//             <TouchableOpacity onPress={() => alert('Go To Profile Screen')}>
-//               <Image
-//               style={{ width: 50, height: 50 }}
-//               source={require('./assets/user-icon-01.png')} /> 
-//             </TouchableOpacity>
-//         </View>
-//       ),
-//     });
-//   }, [navigation]);
-// }
 export default class BrowseScreen extends Component{
   constructor(props){
     super(props);
@@ -116,37 +84,14 @@ export default class BrowseScreen extends Component{
                   <Picker.Item value="1" label="1" />
                   <Picker.Item value="2" label="2" />
                   <Picker.Item value="3" label="3" />
+                  <Picker.Item value="4" label="4" />
+                  <Picker.Item value="5" label="5" />
                 </Picker>
               </View>
             </View>
 
             </View>
             
-            {/* <View style = {browseStyles.itembox}>
-              <View style = {browseStyles.item}>
-                  <Image resizeMode = 'center' style = {browseStyles.img} source = {require('./assets/book-01.png')}>
-                  </Image>
-              </View>
-              <Text style = {browseStyles.itemboxText}>
-                A Very Interesting Book Title
-              </Text>
-              <Text style = {browseStyles.itemboxText}>
-                $45 
-              </Text>
-            </View>
-
-            <View style = {browseStyles.itembox}>
-              <View style = {browseStyles.item}>
-                  <Image resizeMode = 'center' style = {browseStyles.img} source = {require('./assets/book-01.png')}>
-                  </Image>
-              </View>
-              <Text style = {browseStyles.itemboxText}>
-                A Very Interesting Book Title
-              </Text>
-              <Text style = {browseStyles.itemboxText}>
-                $45
-              </Text>
-            </View>*/}
 
         </ImageBackground>
     </View>

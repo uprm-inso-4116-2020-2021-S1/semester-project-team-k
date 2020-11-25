@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react';
-import { StyleSheet, Text, TextInput, View, Button, Image, ImageBackground, IconButton, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button, Image, ImageBackground, IconButton, TouchableOpacity, AsyncStorage } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -21,6 +21,7 @@ function LogInScreen({ navigation }) {
       ),
     });
   }, [navigation]);
+  
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
