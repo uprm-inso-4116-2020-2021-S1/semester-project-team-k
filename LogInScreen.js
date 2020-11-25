@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import { StyleSheet, Text, TextInput, View, Button, Image, ImageBackground, IconButton, TouchableOpacity } from 'react-native';
 import { SearchBar } from 'react-native-elements';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 function LogInScreen({ navigation }) {
+  const [_email, setEmail] = useState('');
+  const [_password, setPassword] = useState('');
+  // Parameter to pass on to another view, result of login from user
+  const [user, setUser] = useState({user:"userTest"});
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -20,9 +26,34 @@ function LogInScreen({ navigation }) {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <ImageBackground source={require('./assets/fondo-01.png')} style={loginStyles.imglog}>
       <View style={loginStyles.logInContainer}>
-          <TextInput placeholder = 'Username' style = {loginStyles.logInText} />
-          <TextInput placeholder = 'Password' style = {loginStyles.logInText}/>
-          <Button title = 'Log In' color = 'gray' style = {loginStyles.logInButton} />
+{/* 
+          // <TextInput placeholder = 'Username' style = {loginStyles.logInText} />
+          // <TextInput placeholder = 'Password' style = {loginStyles.logInText}/>
+          // <Button title = 'Log In' color = 'gray' style = {loginStyles.logInButton} /> */}
+
+          <TextInput 
+            value = {_email} 
+            style = {loginStyles.logInText}
+            onChangeText={text => setEmail(text)}
+            placeholder="Email"
+          />
+          <TextInput 
+            value = {_password}
+            style = {loginStyles.logInText}
+            onChangeText={text => setPassword(text)}
+            secureTextEntry={true}
+            placeholder="Password"
+          />
+          <Button title = 'Log In' color = 'gray' style = {loginStyles.logInButton} onPress={
+              () => {
+                fetch(`http://localhost:9998/users/login?email=${_email}&password=${_password}`)
+                  .then((response) => response.json())
+                  .then((data) => setUser({user:JSON.stringify(data)}))
+                  .catch((err) => setUser({user:JSON.stringify(err)}));
+                navigation.navigate('Intro', user);
+              }
+            }/>
+
       </View>
       </ImageBackground>
     </View>

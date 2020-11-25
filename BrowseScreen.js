@@ -1,43 +1,88 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, Button, Image, ImageBackground, IconButton, TouchableOpacity, Picker } from 'react-native';
 
-function BrowseScreen({ navigation }) {
 
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <TouchableOpacity onPress={() => navigation.navigate('Intro')}>
-          <Image
-          style={{ width: 50, height: 50 }}
-          source={require('./assets/home-icon-01.png')} />
-        </TouchableOpacity>
-      ),
-      headerRight: () => 
-      (
-        <View style={{marginHorizontal: 50, flexDirection: "row"}}>
-          <TextInput placeholder = 'Search' style={{ height: 40, borderColor: 'gray', borderWidth: 2 }} /> 
-            <TouchableOpacity onPress={() => navigation.navigate('Search')}>
-              <Image
-              style={{ width: 50, height: 50 }}
-              source={require('./assets/search-icon-01.png')} /> 
-            </TouchableOpacity>
+// function BrowseScreenTop({ navigation }) {
+
+//   React.useLayoutEffect(() => {
+//     navigation.setOptions({
+//       headerTitle: () => (
+//         <TouchableOpacity onPress={() => navigation.navigate('Intro')}>
+//           <Image
+//           style={{ width: 50, height: 50 }}
+//           source={require('./assets/home-icon-01.png')} />
+//         </TouchableOpacity>
+//       ),
+//       headerRight: () => 
+//       (
+//         <View style={{marginHorizontal: 50, flexDirection: "row"}}>
+//           <TextInput placeholder = 'Search' style={{ height: 40, borderColor: 'gray', borderWidth: 2 }} /> 
+//             <TouchableOpacity onPress={() => navigation.navigate('Search')}>
+//               <Image
+//               style={{ width: 50, height: 50 }}
+//               source={require('./assets/search-icon-01.png')} /> 
+//             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
               <Image
               style={{ width: 50, height: 50 }}
               source={require('./assets/cart-01.png')} /> 
             </TouchableOpacity>
-            
-            <TouchableOpacity onPress={() => alert('Go To Profile Screen')}>
-              <Image
-              style={{ width: 50, height: 50 }}
-              source={require('./assets/user-icon-01.png')} /> 
-            </TouchableOpacity>
-        </View>
-      ),
-    });
-  }, [navigation]);
 
+//             <TouchableOpacity onPress={() => alert('Go To Profile Screen')}>
+//               <Image
+//               style={{ width: 50, height: 50 }}
+//               source={require('./assets/user-icon-01.png')} /> 
+//             </TouchableOpacity>
+//         </View>
+//       ),
+//     });
+//   }, [navigation]);
+// }
+export default class BrowseScreen extends Component{
+  constructor(props){
+    super(props);
+    this.state={email:'', password:''};
+  }
+  BrowseScreenTop({ navigation }) {
+
+    React.useLayoutEffect(() => {
+      navigation.setOptions({
+        headerTitle: () => (
+          <TouchableOpacity onPress={() => navigation.navigate('Intro')}>
+            <Image
+            style={{ width: 50, height: 50 }}
+            source={require('./assets/home-icon-01.png')} />
+          </TouchableOpacity>
+        ),
+        headerRight: () => 
+        (
+          <View style={{marginHorizontal: 50, flexDirection: "row"}}>
+            <TextInput placeholder = 'Search' style={{ height: 40, borderColor: 'gray', borderWidth: 2 }} /> 
+              <TouchableOpacity onPress={() => navigation.navigate('Search')}>
+                <Image
+                style={{ width: 50, height: 50 }}
+                source={require('./assets/search-icon-01.png')} /> 
+              </TouchableOpacity>
+  
+              <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+                <Image
+                style={{ width: 50, height: 50 }}
+                source={require('./assets/cart-01.png')} /> 
+              </TouchableOpacity>
+              
+              <TouchableOpacity onPress={() => alert('Go To Profile Screen')}>
+                <Image
+                style={{ width: 50, height: 50 }}
+                source={require('./assets/user-icon-01.png')} /> 
+              </TouchableOpacity>
+          </View>
+        ),
+      });
+    }, [navigation]);
+  }
+
+  render(){
   return (
     <View style={browseStyles.container}>
         <ImageBackground source={require('./assets/fondo-01.png')} style={browseStyles.img}>
@@ -107,8 +152,9 @@ function BrowseScreen({ navigation }) {
     </View>
   );
 }
+}
 
-export default BrowseScreen;
+// export default BrowseScreen;
 
 const browseStyles = StyleSheet.create({
 container: {
