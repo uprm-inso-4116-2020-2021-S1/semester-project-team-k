@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, View, Button, Image, ImageBackground, IconButton, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button, Image, ImageBackground, IconButton, TouchableOpacity, Picker } from 'react-native';
 
 function BrowseScreen({ navigation }) {
 
@@ -22,7 +22,7 @@ function BrowseScreen({ navigation }) {
               source={require('./assets/search-icon-01.png')} /> 
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => alert('Go To Cart Screen')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
               <Image
               style={{ width: 50, height: 50 }}
               source={require('./assets/cart-01.png')} /> 
@@ -45,21 +45,39 @@ function BrowseScreen({ navigation }) {
           <View style = {browseStyles.itemboxesContainer}>
             <View style = {browseStyles.itembox}>
               <View style = {browseStyles.item}>
-                {/* <TouchableOpacity onPress={() => navigation.navigate('Search')} title="Search"> */}
-                  <Image resizeMode = 'center' style = {browseStyles.item} source = {require('./assets/book-01.png')}>
-                  </Image>
-                {/* </TouchableOpacity> */}
-                {/* Here goes the item pic. and OnClick event. */}
+                  <Image resizeMode = 'center' style = {browseStyles.item} source = {require('./assets/book-01.png')}></Image>
               </View>
-              <Text style = {browseStyles.itemboxText}>
-                A Very Interesting Book Title
-              </Text>
-              <Text style = {browseStyles.itemboxText}>
-                $45
-              </Text>
+              <Text style = {browseStyles.itemboxText}>Stock: 5</Text>
+            </View>
+          </View> 
+
+            <View style = {browseStyles.infobox}>
+              <Text style = {browseStyles.itemboxText}>Title: Calculus: Early Transcendentals</Text>
+              <Text style = {browseStyles.itemboxText}>ISBN: 978-1-305-27235-4</Text>
+              <Text style = {browseStyles.itemboxText}>Author(s): James Stewart</Text>
+              <Text style = {browseStyles.itemboxText}>Subject: Education</Text>
+              <Text style = {browseStyles.itemboxText}>Genre: </Text>
+              <Text style = {browseStyles.itemboxText}>Year of release: 2016</Text>
+              <Text style = {browseStyles.itemboxText}>$41.47</Text>
+              <Text style = {browseStyles.itemboxText}>Edition: 8</Text>
+
+            <View style = {browseStyles.cart}>
+              <View style = {browseStyles.button}>
+                  <Button title = 'Add to cart' color = '#b2cf38' onPress={() => navigation.navigate('Cart')}> </Button>
+              </View>
+
+              <View style = {browseStyles.picker}>
+                <Picker>
+                  <Picker.Item value="1" label="1" />
+                  <Picker.Item value="2" label="2" />
+                  <Picker.Item value="3" label="3" />
+                </Picker>
+              </View>
+            </View>
+
             </View>
             
-            <View style = {browseStyles.itembox}>
+            {/* <View style = {browseStyles.itembox}>
               <View style = {browseStyles.item}>
                   <Image resizeMode = 'center' style = {browseStyles.img} source = {require('./assets/book-01.png')}>
                   </Image>
@@ -83,45 +101,49 @@ function BrowseScreen({ navigation }) {
               <Text style = {browseStyles.itemboxText}>
                 $45
               </Text>
-            </View>
-          </View>
+            </View>*/}
 
         </ImageBackground>
     </View>
   );
 }
 
-{/* <Button
-title="Purchase"
-onPress={() => navigation.navigate('Intro')}
-/> */}
-
 export default BrowseScreen;
 
 const browseStyles = StyleSheet.create({
 container: {
-  flex: 1,
+  flex: 1
 },
 itemboxesContainer: {
   position: 'absolute',
   top: "25%",
   width: '60vw',
   borderWidth: 0,
-  // borderColor: 'red',
   flexDirection: 'row',
   alignSelf: 'center', 
   justifyContent: 'space-between',
+  right: "15%"
 },
 item: {
   width: '100%',
   height: '100%',
-  backgroundColor: 'grey',
+  backgroundColor: '#d1d1d1',
+  borderRadius: 10,
 },
 itembox: {
-  borderWidth: 2,
-  // borderColor: 'green',
-  width: "15vw",
-  height: "30vh", 
+  borderWidth: 0,
+  width: "20vw",
+  height: "40vh", 
+},
+infobox: {
+  position: 'absolute',
+  top: "25%",
+  right: "21%",
+  width: '45vw',
+  borderWidth: 0,
+  alignSelf: 'center', 
+  justifyContent: 'space-between',
+  paddingLeft: 185
 },
 itemboxText:{
   padding: 5,
@@ -132,4 +154,21 @@ img:{
     flex: 1,
     resizeMode: "cover",
   },
+button:{
+    borderRadius: 10,
+    width: "20vw",
+    height: "40vh", 
+},
+picker:{
+  // flexDirection: 'row',
+  flex: 1,
+  // paddingLeft: -300,
+  // paddingBottom: 350,
+  alignItems: "center",
+  paddingLeft: 5,
+},
+cart:{
+  flexDirection: 'row',
+  position: 'relative',
+}
 });

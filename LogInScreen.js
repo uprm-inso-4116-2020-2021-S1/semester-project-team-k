@@ -23,7 +23,6 @@ function LogInScreen({ navigation }) {
           <TextInput placeholder = 'Username' style = {loginStyles.logInText} />
           <TextInput placeholder = 'Password' style = {loginStyles.logInText}/>
           <Button title = 'Log In' color = 'gray' style = {loginStyles.logInButton} />
-          {/* onPress = {() => navigation.Navigate('Intro') }/> */}
       </View>
       </ImageBackground>
     </View>

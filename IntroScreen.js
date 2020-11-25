@@ -22,7 +22,7 @@ function IntroScreen({ navigation }) {
               source={require('./assets/search-icon-01.png')} /> 
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => alert('Go To Cart Screen')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
               <Image
               style={{ width: 50, height: 50 }}
               source={require('./assets/cart-01.png')} /> 
@@ -58,9 +58,14 @@ function IntroScreen({ navigation }) {
               source={require('./assets/Logo-01.png')}>
             </Image>
             </View>
-            <Text style={introStyles.logoText}>
-              Books · School Supplies · School Merch · Clothing
-            </Text>
+
+            <View style={introStyles.nav}>
+              <Text style={introStyles.nav} onPress={() => navigation.navigate('Search')}>Books · </Text>
+              <Text style={introStyles.nav} onPress={() => alert('Go To School Supplies Screen')}>School Supplies · </Text>
+              <Text style={introStyles.nav} onPress={() => alert('Go To School Merch Screen')}>School Merch · </Text>
+              <Text style={introStyles.nav} onPress={() => alert('Go To Clothing Screen')}>Clothing</Text>
+            </View>
+
           </View>
         </View>
       </View>
@@ -78,7 +83,6 @@ const introStyles = StyleSheet.create({
   logInContainer: {
     width: '40%',
     height: '40%',
-    // backgroundColor: "#E6E6E6",
     backgroundColor: "white",
     marginTop: 100,
     alignSelf: 'center',
@@ -121,4 +125,12 @@ const introStyles = StyleSheet.create({
     flex: 1,
     resizeMode: "cover",
   },
+  nav:{
+    flexDirection: 'row',
+    color: "#121212",
+    textAlign: "center",
+    fontSize: 35,
+    marginTop: 5,
+    alignSelf: "center",
+  }
 });

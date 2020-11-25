@@ -15,7 +15,7 @@ function SearchScreen({ navigation }) {
       headerRight: () => 
       (
         <View style={{marginHorizontal: 50, flexDirection: "row"}}>
-            <TouchableOpacity onPress={() => alert('Go To Cart Screen')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
               <Image
               style={{ width: 50, height: 50 }}
               source={require('./assets/cart-01.png')} /> 
@@ -46,16 +46,16 @@ function SearchScreen({ navigation }) {
                 </TouchableOpacity>
 
                 <Text style = {searchStyles.itemText}>
-                    125$
+                    $41.47
                 </Text>
                 <Text style = {searchStyles.itemText}>
-                    John Dewey
+                    James Stewart ·
+                </Text>
+                <Text style = {searchStyles.itemText}>
+                    Mathematics ·
                 </Text>
                 <Text style = {searchStyles.itemText}>
                     Calculus
-                </Text>
-                <Text style = {searchStyles.itemText}>
-                    Mathematics 
                 </Text>
               </View>
             </View>
